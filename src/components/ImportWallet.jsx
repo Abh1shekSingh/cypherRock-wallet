@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import { ImCross } from "react-icons/im";
+import React, { useEffect, useRef } from 'react';
+import { ImCross } from 'react-icons/im';
 
-const ImportWallet = ({setOpen, open}) => {
-    const dialogRef = useRef();
+const ImportWallet = ({ setOpen, open }) => {
+  const dialogRef = useRef();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -17,21 +17,28 @@ const ImportWallet = ({setOpen, open}) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [setOpen]);
-  return (
-    <div className='dialog' ref={dialogRef}>
-       <div className='title'>
-        <h1>Import Wallet</h1>
-        <i onClick={() => setOpen(!open)}><ImCross /></i>
-       </div>
-       <form>
-        <label>Enter your wallet name:</label>
-        <input />
-        <label>Enter your Mnemonic:</label>
-        <input />
-       </form>
-        <button>Submit</button>
-    </div>
-  )
-}
 
-export default ImportWallet
+  return (
+    <>
+      {open && (
+        <div className='overlay'>
+          <div className='dialog' ref={dialogRef}>
+            <div className='title'>
+              <h1>Import Wallet</h1>
+              <i onClick={() => setOpen(!open)}><ImCross /></i>
+            </div>
+            <form>
+              <label>Enter your wallet name:</label>
+              <input />
+              <label>Enter your Mnemonic:</label>
+              <input />
+            </form>
+            <button>Submit</button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ImportWallet;
