@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import Header from './components/Header'
+import {Main} from "./styled/theme"
+import SideNav from './components/SideNav'
+import { Route,Routes } from 'react-router-dom'
+import Wallet from './components/Wallet'
+import Transaction from './components/Transaction'
+import './App.css'
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Main>
+      <Header />
+      <div className='Hero'>
+      <SideNav /> 
+      <Routes>
+        <Route path='/' exact Component={Wallet} />
+        <Route path='/transaction' Component={Transaction} />
+      </Routes>
+      </div>
+    </Main>
+  )
 }
 
-export default App;
+export default App
